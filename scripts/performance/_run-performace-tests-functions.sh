@@ -53,7 +53,7 @@ function create_endpoint_url() {
     HTTP_PORT=$(kubectl get svc cortx-server-0 -o=jsonpath='{.spec.ports[?(@.port==80)].nodePort}')
     if [ $(systemd-detect-virt -v) == "none" ];then
         CLUSTER_TYPE=HW 
-	    IP_ADDRESS=$(ifconfig eno5 | grep inet -w | awk '{print $2}')
+	    IP_ADDRESS=$(ifconfig enp175s0f0 | grep inet -w | awk '{print $2}')
     else
         CLUSTER_TYPE=VM		
 	    IP_ADDRESS=$(ifconfig eth1 | grep inet -w | awk '{print $2}')
